@@ -34,18 +34,16 @@ module Map =
                 let t1 = s.[k]
                 s.Remove(k).Add(k, merging t t1)
             | false -> s.Add(k, t)) table1 table2
-//    let updateByKey (key : 'Key) (value : 'T) (table : Map<'Key, 'T>) : Map<'Key, 'T> when 'Key : comparison = 
-//        match Map.containsKey key table with
-//        | true ->
-//            table
-//            |> Map.remove key
-//            |> Map.add key value
-//        | false -> table |> Map.add key value
-
-    let difference (table1 : Map<'a, 'b>) (table2 : Map<'a, 'b>) =
-        Map.filter (fun k v ->
-            match Map.containsKey k table2 with
-            | false -> true
-            | true ->
-                let value = Map.find k table2
-                value = v) table1
+    
+    //    let updateByKey (key : 'Key) (value : 'T) (table : Map<'Key, 'T>) : Map<'Key, 'T> when 'Key : comparison = 
+    //        match Map.containsKey key table with
+    //        | true ->
+    //            table
+    //            |> Map.remove key
+    //            |> Map.add key value
+    //        | false -> table |> Map.add key value
+    let difference (table1 : Map<'a, 'b>) (table2 : Map<'a, 'b>) = 
+        table1 |> Map.filter (fun k v -> 
+                      match table2 |> Map.tryFindKey (fun a b -> a = k && b = v) with
+                      | Some(key) -> false
+                      | None -> true)
