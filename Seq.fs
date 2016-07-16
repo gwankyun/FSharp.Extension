@@ -37,4 +37,10 @@ module Seq =
         source |> Seq.groupBy Tuple.second
                |> Seq.map (fun (k, v) -> (k, v |> Seq.map Tuple.first))
 
+    let takeOr (count : int) (def : 'a seq) (source : 'a seq) =
+        if source |> Seq.length >= count then
+            source |> Seq.take count
+        else
+            def
+
 //    let groupByOrigin
