@@ -35,6 +35,11 @@ module Map =
                 s.Remove(k).Add(k, merging t t1)
             | false -> s.Add(k, t)) table1 table2
     
+    let findOr (key : 'Key) (value : 'T) (table : Map<'Key, 'T>) = 
+        match table |> Map.tryFind key with
+        | Some(v) -> v
+        | None -> value
+    
     //    let updateByKey (key : 'Key) (value : 'T) (table : Map<'Key, 'T>) : Map<'Key, 'T> when 'Key : comparison = 
     //        match Map.containsKey key table with
     //        | true ->
