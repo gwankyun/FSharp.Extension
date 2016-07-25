@@ -80,3 +80,6 @@ module String =
 
     let find (predicate: char -> bool) (str: string): char =
         (str |> String.filter predicate).[0]
+
+    let join (separator : string) (values : Collections.Generic.IEnumerable<string>) =
+        String.Join(separator, values)
