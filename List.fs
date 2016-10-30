@@ -19,3 +19,8 @@ let tryZip (list1 : 'a list) (list2 : 'a list) =
     [list1; list2]
     |> tryZipList
     |> List.map (fun x -> (x.[0], x.[1]))
+
+let tryZip3 (list1 : 'a list) (list2 : 'a list) (list3 :  'a list) =
+    [list1; list2; list3]
+    |> tryZipList
+    |> List.map (fun x -> (x.[0], x.[1], x.[2]))
