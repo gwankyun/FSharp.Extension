@@ -48,3 +48,9 @@ let isUpper (c : char) =
 
 let isWhiteSpace (c : char) =
     Char.IsWhiteSpace(c)
+
+let toLower (c : char) =
+    Char.ToLower(c)
+
+let toUpper (c : char) =
+    Char.ToUpper(c)
