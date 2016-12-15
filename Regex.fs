@@ -1,4 +1,4 @@
-﻿namespace Extension.RegularExpressions
+﻿namespace FSharp.Extension
 
 open System.Text.RegularExpressions
 open System

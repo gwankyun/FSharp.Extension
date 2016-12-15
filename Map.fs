@@ -1,4 +1,4 @@
-﻿namespace Extension
+﻿namespace FSharp.Extension
 
 module Map = 
     let keys (table : Map<'Key, 'T>) = 

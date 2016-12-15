@@ -1,4 +1,4 @@
-﻿namespace Extension
+﻿namespace FSharp.Extension
 
 module Seq = 
     let partition (predicate : 'a -> bool) (source : 'a seq) = 
@@ -28,19 +28,20 @@ module Seq =
                     f t (pushFront temp source2) Seq.empty
                 | false -> f t source2 (pushFront h temp)
         f source Seq.empty Seq.empty
-    let groupByKey (source : ('a * 'b) seq) =
-
-        source |> Seq.groupBy Tuple.first
-               |> Seq.map (fun (k, v) -> (k, v |> Seq.map Tuple.second))
-
-    let groupByValue (source : ('a * 'b) seq) =
-        source |> Seq.groupBy Tuple.second
-               |> Seq.map (fun (k, v) -> (k, v |> Seq.map Tuple.first))
-
-    let takeOr (count : int) (def : 'a seq) (source : 'a seq) =
-        if source |> Seq.length >= count then
-            source |> Seq.take count
-        else
-            def
-
+    
+    let groupByKey (source : ('a * 'b) seq) = 
+        source
+        |> Seq.groupBy Tuple.first
+        |> Seq.map (fun (k, v) -> (k, v |> Seq.map Tuple.second))
+    
+    let groupByValue (source : ('a * 'b) seq) = 
+        source
+        |> Seq.groupBy Tuple.second
+        |> Seq.map (fun (k, v) -> (k, v |> Seq.map Tuple.first))
+    
+    let takeOr (count : int) (def : 'a seq) (source : 'a seq) = 
+        if source
+           |> Seq.length
+           >= count then source |> Seq.take count
+        else def
 //    let groupByOrigin

@@ -1,4 +1,4 @@
-﻿module Member
+﻿namespace FSharp.Extension
 
-let toString x =
-    x.ToString()
+module Member = 
+    let toString x = x.ToString()
