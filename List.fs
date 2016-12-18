@@ -25,3 +25,12 @@ module List =
         [ list1; list2; list3 ]
         |> tryZipList
         |> List.map (fun x -> (x.[0], x.[1], x.[2]))
+    
+    let append (list1 : 'a list) (list2 : 'a list) = 
+        let list1 = list1 |> List.rev
+        let list2 = list2 |> List.rev
+        let f s t = t :: s
+        let g ls = (fun x -> ls |> List.fold f x)
+        List.empty
+        |> g list1
+        |> g list2
