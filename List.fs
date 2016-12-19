@@ -1,5 +1,8 @@
 ﻿namespace FSharp.Extension
 
+open FSharpx.Collections
+open FSharpx.Functional
+
 module List = 
     let tryTail (list : 'a list) = 
         match list with
@@ -30,4 +33,6 @@ module List =
         [ list1; list2 ]
         |> List.map List.rev
         |> List.rev
-        |> List.fold (List.fold (fun s1 t1 -> t1 :: s1)) List.empty
+        |> List.fold (List.cons
+                      |> flip
+                      |> List.fold) List.empty
